@@ -20,7 +20,11 @@
     -->
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <intentionAction>
+            <className>com.strixsoftware.intellij.format.FormatMethodParametersAction</className>
+            <bundleName>com.strixsoftware.intellij.StrixSoftwareBundle</bundleName>
+            <categoryKey>intention.category.other</categoryKey>
+        </intentionAction>
     </extensions>
 
     <actions>
