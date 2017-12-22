@@ -21,7 +21,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <intentionAction>
-            <className>com.strixsoftware.intellij.format.FormatMethodParametersAction</className>
+            <className>com.strixsoftware.intellij.format.FormatMethodInvocationParametersIntention</className>
             <bundleName>com.strixsoftware.intellij.StrixSoftwareBundle</bundleName>
             <categoryKey>intention.category.other</categoryKey>
         </intentionAction>
