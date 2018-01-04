@@ -1,6 +1,5 @@
 package com.strixsoftware.intellij.action;
 
-import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.*;
 import com.siyeh.IntentionPowerPackBundle;
@@ -12,13 +11,11 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.siyeh.ipp.psiutils.HighlightUtil.highlightElement;
 
-public class FormatMethodInvocationParametersIntention extends MutablyNamedIntention {
-
-    private static final Logger log = Logger.getInstance(FormatMethodInvocationParametersIntention.class);
+public class FormatMethodParametersIntention extends MutablyNamedIntention {
 
     @Override
     protected String getTextForElement(PsiElement psiElement) {
-        return StrixSoftwareBundle.message("intention.format.method.invocation.parameters.text");
+        return StrixSoftwareBundle.message("intention.format.method.parameters.text");
     }
 
     @Override
@@ -52,7 +49,7 @@ public class FormatMethodInvocationParametersIntention extends MutablyNamedInten
         return new PsiElementEditorPredicate() {
             @Override
             public boolean satisfiedBy(PsiElement psiElement, Editor editor) {
-                return psiElement instanceof PsiCall;
+                return psiElement instanceof PsiCall || psiElement instanceof PsiParameterList;
             }
         };
 
