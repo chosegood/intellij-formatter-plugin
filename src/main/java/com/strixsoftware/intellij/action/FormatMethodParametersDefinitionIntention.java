@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.siyeh.ipp.psiutils.HighlightUtil.highlightElement;
 
-public class FormatMethodParametersIntention extends MutablyNamedIntention {
+public class FormatMethodParametersDefinitionIntention extends MutablyNamedIntention {
 
     @Override
     protected String getTextForElement(PsiElement psiElement) {
@@ -20,27 +20,22 @@ public class FormatMethodParametersIntention extends MutablyNamedIntention {
 
     @Override
     protected void processIntention(@NotNull PsiElement psiElement) {
-        PsiCall method = (PsiCall) psiElement;
-        PsiExpressionList expressionList = method.getArgumentList();
-        if (expressionList == null) {
-            return;
-        }
-
-        PsiExpression[] expressions = expressionList.getExpressions();
-        if (expressions.length == 0) {
+        PsiParameterList parameterList = (PsiParameterList) psiElement;
+        PsiParameter[] parameters = parameterList.getParameters();
+        if (parameters.length == 0) {
             return;
         }
 
         PsiParserFacade parserFacade = PsiParserFacade.SERVICE.getInstance(psiElement.getProject());
-        for (PsiExpression expression : expressions) {
-            if (!(expression.getPrevSibling() instanceof PsiWhiteSpace
-                    && expression.getPrevSibling().getText().contains("\n"))) {
-                expressionList.addBefore(parserFacade.createWhiteSpaceFromText("\n"), expression);
+        for (PsiParameter parameter : parameters) {
+            if (!(parameter.getPrevSibling() instanceof PsiWhiteSpace
+                    && parameter.getPrevSibling().getText().contains("\n"))) {
+                parameterList.addBefore(parserFacade.createWhiteSpaceFromText("\n"), parameter);
             }
         }
-        expressionList.add(parserFacade.createWhiteSpaceFromText("\n"));
+        parameterList.add(parserFacade.createWhiteSpaceFromText("\n"));
 
-        highlightElement(expressionList, IntentionPowerPackBundle.message("press.escape.to.remove.highlighting.message"));
+        highlightElement(parameterList, IntentionPowerPackBundle.message("press.escape.to.remove.highlighting.message"));
     }
 
     @NotNull
@@ -49,7 +44,7 @@ public class FormatMethodParametersIntention extends MutablyNamedIntention {
         return new PsiElementEditorPredicate() {
             @Override
             public boolean satisfiedBy(PsiElement psiElement, Editor editor) {
-                return psiElement instanceof PsiCall || psiElement instanceof PsiParameterList;
+                return psiElement instanceof PsiParameterList;
             }
         };
 
