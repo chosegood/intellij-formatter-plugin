@@ -11,7 +11,7 @@
     <change-notes></change-notes>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="173.0"/>
+    <idea-version since-build="145.0"/>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
@@ -21,7 +21,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <intentionAction>
-            <className>com.strixsoftware.intellij.format.FormatMethodInvocationParametersIntention</className>
+            <className>com.strixsoftware.intellij.action.FormatMethodInvocationParametersIntention</className>
             <bundleName>com.strixsoftware.intellij.StrixSoftwareBundle</bundleName>
             <categoryKey>intention.category.other</categoryKey>
         </intentionAction>

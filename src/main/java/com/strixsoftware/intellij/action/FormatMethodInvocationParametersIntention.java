@@ -1,4 +1,4 @@
-package com.strixsoftware.intellij.format;
+package com.strixsoftware.intellij.action;
 
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Editor;
@@ -41,6 +41,7 @@ public class FormatMethodInvocationParametersIntention extends MutablyNamedInten
                 expressionList.addBefore(parserFacade.createWhiteSpaceFromText("\n"), expression);
             }
         }
+        expressionList.add(parserFacade.createWhiteSpaceFromText("\n"));
 
         highlightElement(expressionList, IntentionPowerPackBundle.message("press.escape.to.remove.highlighting.message"));
     }
